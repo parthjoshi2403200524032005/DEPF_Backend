@@ -1,5 +1,3 @@
-
-
 const mongoose = require("mongoose");
 
 // Employee schema
@@ -12,7 +10,7 @@ const EmployeeSchema = new mongoose.Schema(
     manager: { type: Boolean, required: true },
     workplace: { type: String, required: true, trim: true },
     project: { type: String, trim: true },
-    reportingManagerID: { type: String, trim: true },
+    reportingEmployeeManagerID: { type: String, trim: true },
     referredBy: { type: String, trim: true },
     interviewDate: { type: Date },
     offeredDate: { type: Date },
