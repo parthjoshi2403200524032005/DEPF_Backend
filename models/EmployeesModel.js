@@ -23,11 +23,14 @@ const EmployeeSchema = new mongoose.Schema(
     appointmentLetterRefNo: { type: String, trim: true },
     dateOfJoining: { type: Date, required: true },
     status: { type: String, trim: true },
-    education: {
-      highestEducation: { type: String, required: true },
+   
+    education: [
+      {
+        highestEducation: { type: String, required: true },
       yearOfPassing: { type: Number, required: true },
       relevantExperience: { type: String, required: true },
-    },
+      },
+    ],
     personal: {
       dob: { type: Date, required: true },
       age: { type: Number, required: true },
