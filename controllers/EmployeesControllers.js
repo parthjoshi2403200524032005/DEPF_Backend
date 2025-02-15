@@ -11,8 +11,6 @@ const getAllEmployees = async (req, res) => {
   }
 };
 
-
-
 const formatDate = (date) => (date ? moment(date).format("YYYY-MM-DD") : null);
 
 const formatEmployeeData = (employee) => {
@@ -87,6 +85,39 @@ const createEmployee = async (req, res) => {
   }
 };
 
+const searchEmployee = async (req, res) => {
+  try {
+ 
+    const { search } = req.params;
+    if (!search || search.trim() === "") {
+      return res.status(400).json({ error: "Search query is required" });
+    }
+
+    console.log("🔎 Searching for:", search);
+
+    let searchQuery = {
+      $or: [
+        { employeeID: search }, // Match exact employee ID
+        { employeeName: { $regex: search, $options: "i" } } // Case-insensitive name search
+      ]
+    };
+
+    console.log("🔍 MongoDB Query:", searchQuery);
+
+    const employees = await Employee.find(searchQuery);
+
+    if (employees.length === 0) {
+      return res.status(404).json({ error: "No employees found" });
+    }
+
+    res.status(200).json(employees);
+  } catch (error) {
+    console.error("❌ Error searching employees:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 const updateEmployee = async (req, res) => {
   try {
     console.log("Employee ID:", req.params.id);
@@ -135,4 +166,5 @@ module.exports = {
   createEmployee,
   updateEmployee,
   deleteEmployee,
+  searchEmployee,
 };

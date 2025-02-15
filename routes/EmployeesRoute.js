@@ -7,6 +7,7 @@ router.get("/:id", EmployeesControllers.getEmployeeById);
 router.post("/", EmployeesControllers.createEmployee);
 router.put("/:id", EmployeesControllers.updateEmployee);
 router.delete("/:id", EmployeesControllers.deleteEmployee);
+router.get("/search/:search", EmployeesControllers.searchEmployee);
 
 module.exports = router;
  
