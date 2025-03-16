@@ -27,10 +27,27 @@ const EmployeeSchema = new mongoose.Schema(
     education: [
       {
         highestEducation: { type: String, required: true },
-      yearOfPassing: { type: Number, required: true },
-      relevantExperience: { type: String, required: true },
+        yearOfPassing: { type: Number, required: true },
+        // relevantExperience: { type: String, required: true },
+    
+        class: { type: String },
+        schoolName: { type: String },
+        board: { type: String },
+        uploadCertificate: { type: String , required: true },
+    
+        trade: { type: String },
+        collegeName: { type: String },
+        university: { type: String },
+        discipline: { type: String },
+        apprenticeship: { type: Boolean },
+        apprenticeshipCertificate: { type: String },
+        startDate: { type: Date },
+        endDate: { type: Date },
+        period: { type: String },
+        organisationName: { type: String },
       },
     ],
+    
     personal: {
       dob: { type: Date, required: true },
       age: { type: Number, required: true },
